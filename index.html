@@ -5,8 +5,22 @@
             body{
                 margin: 200px;
                 text-align: center;
-                background-color: aqua;
+                background-color:pink;
+                
             }
+
+            #div2{
+                background-color: aqua;
+                border: black;
+                padding: 25px;
+
+
+            }
+
+           h2{
+               font-family: sans-serif;
+           }
+           
         </style>
         <title>Currency Exchange</title>
 
@@ -44,15 +58,22 @@
         </head>
 
         <body>
+        <div id="div2">
+            <div id="div1">
+                <h2 id="heading">Fx Rates Converter</h2>
+            </div>
+            
+        
             <form>
-                <input id="currency" placeholder="Currency" type="text" >
+                <input id="currency" placeholder="Input Currency" type="text" >
                 <input type="submit" value="Convert">
             </form>
+            
             <div id="result">
                 <hr>
-                <h1 id="res">
+                <h2 id="res">
 
-                </h1>
+                </h2>
                 <hr>
                 Note : Input the Currency Code e.g for Euro input 'EUR'
                 <br>
@@ -63,6 +84,7 @@
                 Developed by Dave Eke - daveydenco@gmail.com
 
 
+            </div>
             </div>
         </body>
 </html>
