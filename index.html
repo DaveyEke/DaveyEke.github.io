@@ -5,14 +5,21 @@
             body{
                 margin: 200px;
                 text-align: center;
-                background-color:pink;
+                background-color: white;
+                justify-content: center;
                 
             }
 
             #div2{
-                background-color: aqua;
+                background-color:green;
                 border: black;
                 padding: 25px;
+                text-align: center;
+                block-size:655px;
+                justify-content: center;
+                margin: 300px;
+                width: 350px; 
+                
 
 
             }
@@ -20,7 +27,14 @@
            h2{
                font-family: sans-serif;
            }
-           
+
+           html{
+
+                justify-content: center;
+
+           }
+
+        
         </style>
         <title>Currency Exchange</title>
 
@@ -36,7 +50,7 @@
                      const currency = document.querySelector('#currency').value.toUpperCase();
                      const rate = data.conversion_rates[currency];
                      if (rate !==undefined){
-                        document.querySelector('#res').innerHTML = `1 USD is equal to ${rate.toFixed(0)} ${currency}`
+                        document.querySelector('#res').innerHTML = `1 USD is equal to ${rate.toFixed(4)} ${currency}`
                      } else {
                          document.querySelector('#res').innerHTML = 'Invalid Currency';
                      }
@@ -50,17 +64,55 @@
                 });
                     
                 return false;
+               
+                
                 }
+                
+            
+            
+                document.querySelector('#form2').onsubmit = function(){
+                    fetch('https://v6.exchangerate-api.com/v6/a840ec47274bed9def64fc2a/latest/USD')
+                    .then(response => response.json())
+                    .then(data => {
+                        const Curr = document.querySelector("#Curr").value.toUpperCase();
+                        const Val = parseInt(document.querySelector("#Val").value);
+                        const curr_rate =   data.conversion_rates[Curr];
+                        console.log(curr_rate)
+    
+                        const result = Val * curr_rate
+                        console.log(result)
+    
+                        if (curr_rate !==undefined){
+                            document.querySelector("#restext").innerHTML = `${Val} USD   is equal to ${result} ${Curr} `; 
+                        } else {
+                             document.querySelector('#restext').innerHTML = 'Invalid Currency';
+                         }
+                   
+                       
+                        
+                    })
+                    
+                    .catch(error => {
+                        console.log('Error', error);
+                    });
+                   
+                    return false;
+                    }
+            
+                   
+               
                 
             });
            
+            
+
         </script>
         </head>
 
         <body>
         <div id="div2">
             <div id="div1">
-                <h2 id="heading">Fx Rates Converter</h2>
+                <h2 id="heading">Fx Rates Converter </h2>
             </div>
             
         
@@ -82,9 +134,27 @@
                 <br>
                 <br>
                 Developed by Dave Eke - daveydenco@gmail.com
+                <br>
+                <br>
+                <br>
+                <form id="form2">
+                    <input id="Curr" type="text" placeholder="Input Currency Code">
+                    <input id="Val"  type="text"placeholder="Input Value in USD"><br>
+                    <input type="submit" value="Calculate">  
+                </form>
+                <br>
+                <br>
+                Note : The value you put in the "Input Value " space is in USD!<br>
+                I.e you are calculating from USD to your desired currency.
+                <hr>
+                <h1 id="restext"></h1>
+                <hr>
+                
 
 
             </div>
             </div>
+           
         </body>
+        
 </html>
